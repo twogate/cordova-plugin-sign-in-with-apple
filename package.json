@@ -1,0 +1,19 @@
+{
+  "name": "cordova-plugin-sign-in-with-apple",
+  "version": "0.0.1",
+  "description": "",
+  "main": "www/sign-in-with-apple.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/twogate/cordova-plugin-sign-in-with-apple.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/twogate/cordova-plugin-sign-in-with-apple/issues"
+  },
+  "homepage": "https://github.com/twogate/cordova-plugin-sign-in-with-apple#readme"
+}
