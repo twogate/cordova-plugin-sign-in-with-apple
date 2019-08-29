@@ -16,15 +16,15 @@
         <engine name="cordova-ios" version=">=4.5.0"/>
     </engines>
 
-    <js-module src="www/sign-in-with-apple.js.js" name="SignInWithApple">
+    <js-module src="www/sign-in-with-apple.js" name="SignInWithApple">
         <clobbers target="cordova.plugins.SignInWithApple" />
     </js-module>
     <platform name="ios">
-        <config-file target="res/xml/config.xml" parent="/*">
+        <!--<config-file target="res/xml/config.xml" parent="/*">
             <feature name="SignInWithApple">
                 <param name="ios-package" value="SignInWithApple" />
             </feature>
-        </config-file>
+        </config-file>-->
         <framework src="AuthenticationServices.framework" />
 
         <source-file src="src/ios/SignInWithApple.swift" />
