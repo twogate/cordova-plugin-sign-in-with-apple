@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
         xmlns:android="http://schemas.android.com/apk/res/android"
-        id="com-twogate-signinwithapple" version="0.0.1">
+        id="cordova-plugin-sign-in-with-apple" version="0.0.1">
     <name>SignInWithApple</name>
 
     <description>Sign in with Apple</description>
