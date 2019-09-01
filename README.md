@@ -1,7 +1,7 @@
 # cordova-plugin-sign-in-with-apple
 
-You should add `cordova-plugin-add-swift-support` plugin to your project to use this plugin.
 
 ```
-cordova plugin add cordova-plugin-add-swift-support --save
+cordova plugin add https://githu
+b.com/twogate/cordova-plugin-sign-in-with-apple.git --variable USESWIFTLANGUAGEVERSION=5
 ```
