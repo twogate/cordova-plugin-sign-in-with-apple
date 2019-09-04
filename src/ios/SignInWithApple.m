@@ -45,30 +45,36 @@
 
     NSError *error;
 
-    NSDictionary *dic = @{
-      @"user": appleIDCredential.user == nil || [appleIDCredential user],
-      @"state": [appleIDCredential state],
-      @"fullName": @{
-        @"namePrefix": [[appleIDCredential fullName] namePrefix],
-        @"givenName": [[appleIDCredential fullName] givenName],
-        @"givenName": [[appleIDCredential fullName] middleName],
-        @"familyName": [[appleIDCredential fullName] familyName],
-        @"nameSuffix": [[appleIDCredential fullName] nameSuffix],
-        @"nickname": [[appleIDCredential fullName] nickname],
-        @"phoneticRepresentation": @{
-          @"namePrefix": [[appleIDCredential fullName] namePrefix],
-          @"givenName": [[appleIDCredential fullName] givenName],
-          @"givenName": [[appleIDCredential fullName] middleName],
-          @"familyName": [[appleIDCredential fullName] familyName],
-          @"nameSuffix": [[appleIDCredential fullName] nameSuffix],
-          @"nickname": [[appleIDCredential fullName] nickname]
+    NSDictionary *fullName;
+    NSDictionary *fullNamePhonetic;
+    if (appleIDCredential.fullName) {
+        if (appleIDCredential.fullName.phoneticRepresentation) {
+            fullNamePhonetic = @{
+                   @"namePrefix": appleIDCredential.fullName.phoneticRepresentation.namePrefix ? appleIDCredential.fullName.phoneticRepresentation.namePrefix : @"",
+                   @"givenName": appleIDCredential.fullName.phoneticRepresentation.givenName ? appleIDCredential.fullName.phoneticRepresentation.givenName : @"",
+                   @"givenName": appleIDCredential.fullName.phoneticRepresentation.middleName ? appleIDCredential.fullName.phoneticRepresentation.middleName : @"",
+                   @"familyName": appleIDCredential.fullName.phoneticRepresentation.familyName ? appleIDCredential.fullName.phoneticRepresentation.familyName : @"",
+                   @"nameSuffix": appleIDCredential.fullName.phoneticRepresentation.nameSuffix ? appleIDCredential.fullName.phoneticRepresentation.nameSuffix : @"",
+                   @"nickname": appleIDCredential.fullName.phoneticRepresentation.nickname ? appleIDCredential.fullName.phoneticRepresentation.nickname : @""
+            };
         }
-      },
-      @"email": [appleIDCredential email],
-//      @"identityToken": (NSDictionary*) [NSKeyedUnarchiver unarchiveObjectWithData:[appleIDCredential identityToken]],
-//      @"identityToken": (NSDictionary*) [NSKeyedUnarchiver unarchivedObjectOfClass:<#(nonnull Class)#> fromData:[appleIDCredential identityToken] error:error],
-//      @"identityToken": (NSDictionary*) [NSKeyedUnarchiver unarchivedObjectOfClass:<#(nonnull Class)#> fromData:[appleIDCredential identityToken] error:error]
-      @"identityToken": [[NSString alloc] initWithData:[appleIDCredential identityToken] encoding:NSUTF8StringEncoding]
+        fullName = @{
+               @"namePrefix": appleIDCredential.fullName.namePrefix ? appleIDCredential.fullName.namePrefix : @"",
+               @"givenName": appleIDCredential.fullName.givenName ? appleIDCredential.fullName.givenName : @"",
+               @"givenName": appleIDCredential.fullName.middleName ? appleIDCredential.fullName.middleName : @"",
+               @"familyName": appleIDCredential.fullName.familyName ? appleIDCredential.fullName.familyName : @"",
+               @"nameSuffix": appleIDCredential.fullName.nameSuffix ? appleIDCredential.fullName.nameSuffix : @"",
+               @"nickname": appleIDCredential.fullName.nickname ? appleIDCredential.fullName.nickname : @"",
+               @"phoneticRepresentation": fullNamePhonetic ? fullNamePhonetic : @{}
+        };
+    }
+    NSString *identityToken = [[NSString alloc] initWithData:appleIDCredential.identityToken encoding:NSUTF8StringEncoding];
+    NSDictionary *dic = @{
+      @"user": appleIDCredential.user ? appleIDCredential.user : @"",
+      @"state": appleIDCredential.state ? appleIDCredential.state : @"",
+      @"fullName": fullName ? fullName : @{},
+      @"email": appleIDCredential.email ? appleIDCredential.email : @"",
+      @"identityToken": identityToken
     };
 
     // NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dic
