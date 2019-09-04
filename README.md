@@ -3,8 +3,14 @@
 ## Installation
 
 ```
+cordova plugin add cordova-plugin-sign-in-with-apple
+```
+
+or
+
+```
 cordova plugin add https://githu
-b.com/twogate/cordova-plugin-sign-in-with-apple.git --variable USESWIFTLANGUAGEVERSION=5
+b.com/twogate/cordova-plugin-sign-in-with-apple.git
 ```
 
 # Usage
