@@ -28,18 +28,20 @@
       </feature>
     </config-file>
     <framework src="AuthenticationServices.framework" />
-    <dependency id="cordova-plugin-add-swift-support" version="2.0.2"/>
+    <!--<dependency id="cordova-plugin-add-swift-support" version="2.0.2"/>-->
     <source-file src="src/ios/SignInWithApple.h" />
     <source-file src="src/ios/SignInWithApple.m" />
 
-
     <config-file parent="com.apple.developer.applesignin" target="*/Entitlements-Debug.plist">
-      <string>Default</string>
+      <array>
+        <string>Default</string>
+      </array>
 		</config-file>
     <config-file parent="com.apple.developer.applesignin" target="*/Entitlements-Release.plist">
-      <string>Default</string>
+      <array>
+        <string>Default</string>
+      </array>
     </config-file>
-
 <hook type="after_prepare" src="scripts/after_prepare.js" />
   </platform>
 </plugin>
