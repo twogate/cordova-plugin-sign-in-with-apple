@@ -4,6 +4,7 @@
 
 var fs = require('fs');
 var path = require('path');
+var utilities = require("./lib/utilities");
 
 module.exports = function (context) {
   //get platform from the context supplied by cordova
