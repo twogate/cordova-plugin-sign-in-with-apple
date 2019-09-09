@@ -9,8 +9,7 @@ cordova plugin add cordova-plugin-sign-in-with-apple
 or
 
 ```
-cordova plugin add https://githu
-b.com/twogate/cordova-plugin-sign-in-with-apple.git
+cordova plugin add https://github.com/twogate/cordova-plugin-sign-in-with-apple.git
 ```
 
 # Usage
