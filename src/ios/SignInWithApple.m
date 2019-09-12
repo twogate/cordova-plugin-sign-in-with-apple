@@ -15,7 +15,7 @@
   NSLog(@"SignInWithApple signin()");
 
   if (@available(iOS 13, *)) {
-    _callbackId = command.callbackId;
+    _callbackId = [NSMutableString stringWithString:command.callbackId];
 
     ASAuthorizationAppleIDProvider *provider =
         [[ASAuthorizationAppleIDProvider alloc] init];
@@ -36,20 +36,24 @@
   } else {
     NSLog(@"SignInWithApple signin() ignored because your iOS version < 13");
 
-    CDVPluginResult *result = [CDVPluginResult
-        resultWithStatus:CDVCommandStatus_ERROR
-         messageAsString:@"signin() ignored because your iOS version < 13"];
+    CDVPluginResult *result =
+        [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR
+                      messageAsDictionary:@{
+                        @"error" : @"PLUGIN_ERROR",
+                        @"code" : @"",
+                        @"localizedDescription" : @"",
+                        @"localizedFailureReason" : @"",
+                      }];
     [self.commandDelegate sendPluginResult:result
                                 callbackId:command.callbackId];
   }
 }
 
 - (void)authorizationController:(ASAuthorizationController *)controller
-    didCompleteWithAuthorization:(nonnull ASAuthorization *)authorization {
+    didCompleteWithAuthorization:(nonnull ASAuthorization *)authorization
+    API_AVAILABLE(ios(13.0)) {
   ASAuthorizationAppleIDCredential *appleIDCredential =
       [authorization credential];
-
-  NSError *error;
 
   NSDictionary *fullName;
   NSDictionary *fullNamePhonetic;
@@ -121,14 +125,24 @@
 }
 
 - (void)authorizationController:(ASAuthorizationController *)controller
-           didCompleteWithError:(NSError *)error {
-  NSLog(@"Failed");
+           didCompleteWithError:(NSError *)error API_AVAILABLE(ios(13.0)) {
   NSLog(@" error => %@ ", [error localizedDescription]);
 
   CDVPluginResult *result =
       [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR
-                        messageAsString:[error localizedDescription]];
-  [self.commandDelegate sendPluginResult:result callbackId:command.callbackId];
+                    messageAsDictionary:@{
+                      @"error" : @"ASAUTHORIZATION_ERROR",
+                      @"code" : error.code
+                          ? [NSString stringWithFormat:@"%ld", (long)error.code]
+                          : @"",
+                      @"localizedDescription" : error.localizedDescription
+                          ? error.localizedDescription
+                          : @"",
+                      @"localizedFailureReason" : error.localizedFailureReason
+                          ? error.localizedFailureReason
+                          : @"",
+                    }];
+  [self.commandDelegate sendPluginResult:result callbackId:_callbackId];
 }
 
 @end
