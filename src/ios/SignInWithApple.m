@@ -35,6 +35,9 @@
 
   } else {
     NSLog(@"SignInWithApple signin() ignored because your iOS version < 13");
+
+    CDVPluginResult* result = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"signin() ignored because your iOS version < 13"];
+            [self.commandDelegate sendPluginResult:result callbackId:command.callbackId];
   }
 
 }
@@ -77,21 +80,10 @@
       @"identityToken": identityToken
     };
 
-    // NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dic
-    //                                                    options:NSJSONWritingPrettyPrinted // Pass 0 if you don't care about the readability of the generated string
-    //                                                      error:&error];
-
-// if (! jsonData) {
-//     NSLog(@"Got an error: %@", error);
-// } else {
-//     NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-//     NSLog(@"json:%@\n",jsonString);
-// }
    CDVPluginResult *result =
     [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary: dic];
    [self.commandDelegate sendPluginResult:result
                                callbackId:_callbackId];
-    // TODO: pass credentials to js
 }
 
 
@@ -100,7 +92,8 @@
     NSLog(@"Failed");
     NSLog(@" error => %@ ", [error localizedDescription] );
 
-    // TODO: raise error to js
+    CDVPluginResult* result = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString: [error localizedDescription]];
+            [self.commandDelegate sendPluginResult:result callbackId:command.callbackId];
 }
 
 @end
