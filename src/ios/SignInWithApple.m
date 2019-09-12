@@ -36,64 +36,99 @@
   } else {
     NSLog(@"SignInWithApple signin() ignored because your iOS version < 13");
 
-    CDVPluginResult* result = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"signin() ignored because your iOS version < 13"];
-            [self.commandDelegate sendPluginResult:result callbackId:command.callbackId];
+    CDVPluginResult *result = [CDVPluginResult
+        resultWithStatus:CDVCommandStatus_ERROR
+         messageAsString:@"signin() ignored because your iOS version < 13"];
+    [self.commandDelegate sendPluginResult:result
+                                callbackId:command.callbackId];
   }
-
 }
 
-- (void)authorizationController:(ASAuthorizationController *)controller didCompleteWithAuthorization:(nonnull ASAuthorization *)authorization
-{
-    ASAuthorizationAppleIDCredential *appleIDCredential = [authorization credential];
+- (void)authorizationController:(ASAuthorizationController *)controller
+    didCompleteWithAuthorization:(nonnull ASAuthorization *)authorization {
+  ASAuthorizationAppleIDCredential *appleIDCredential =
+      [authorization credential];
 
-    NSError *error;
+  NSError *error;
 
-    NSDictionary *fullName;
-    NSDictionary *fullNamePhonetic;
-    if (appleIDCredential.fullName) {
-        if (appleIDCredential.fullName.phoneticRepresentation) {
-            fullNamePhonetic = @{
-                   @"namePrefix": appleIDCredential.fullName.phoneticRepresentation.namePrefix ? appleIDCredential.fullName.phoneticRepresentation.namePrefix : @"",
-                   @"givenName": appleIDCredential.fullName.phoneticRepresentation.givenName ? appleIDCredential.fullName.phoneticRepresentation.givenName : @"",
-                   @"givenName": appleIDCredential.fullName.phoneticRepresentation.middleName ? appleIDCredential.fullName.phoneticRepresentation.middleName : @"",
-                   @"familyName": appleIDCredential.fullName.phoneticRepresentation.familyName ? appleIDCredential.fullName.phoneticRepresentation.familyName : @"",
-                   @"nameSuffix": appleIDCredential.fullName.phoneticRepresentation.nameSuffix ? appleIDCredential.fullName.phoneticRepresentation.nameSuffix : @"",
-                   @"nickname": appleIDCredential.fullName.phoneticRepresentation.nickname ? appleIDCredential.fullName.phoneticRepresentation.nickname : @""
-            };
-        }
-        fullName = @{
-               @"namePrefix": appleIDCredential.fullName.namePrefix ? appleIDCredential.fullName.namePrefix : @"",
-               @"givenName": appleIDCredential.fullName.givenName ? appleIDCredential.fullName.givenName : @"",
-               @"givenName": appleIDCredential.fullName.middleName ? appleIDCredential.fullName.middleName : @"",
-               @"familyName": appleIDCredential.fullName.familyName ? appleIDCredential.fullName.familyName : @"",
-               @"nameSuffix": appleIDCredential.fullName.nameSuffix ? appleIDCredential.fullName.nameSuffix : @"",
-               @"nickname": appleIDCredential.fullName.nickname ? appleIDCredential.fullName.nickname : @"",
-               @"phoneticRepresentation": fullNamePhonetic ? fullNamePhonetic : @{}
-        };
+  NSDictionary *fullName;
+  NSDictionary *fullNamePhonetic;
+  if (appleIDCredential.fullName) {
+    if (appleIDCredential.fullName.phoneticRepresentation) {
+      fullNamePhonetic = @{
+        @"namePrefix" :
+                appleIDCredential.fullName.phoneticRepresentation.namePrefix
+            ? appleIDCredential.fullName.phoneticRepresentation.namePrefix
+            : @"",
+        @"givenName" :
+                appleIDCredential.fullName.phoneticRepresentation.givenName
+            ? appleIDCredential.fullName.phoneticRepresentation.givenName
+            : @"",
+        @"givenName" :
+                appleIDCredential.fullName.phoneticRepresentation.middleName
+            ? appleIDCredential.fullName.phoneticRepresentation.middleName
+            : @"",
+        @"familyName" :
+                appleIDCredential.fullName.phoneticRepresentation.familyName
+            ? appleIDCredential.fullName.phoneticRepresentation.familyName
+            : @"",
+        @"nameSuffix" :
+                appleIDCredential.fullName.phoneticRepresentation.nameSuffix
+            ? appleIDCredential.fullName.phoneticRepresentation.nameSuffix
+            : @"",
+        @"nickname" : appleIDCredential.fullName.phoneticRepresentation.nickname
+            ? appleIDCredential.fullName.phoneticRepresentation.nickname
+            : @""
+      };
     }
-    NSString *identityToken = [[NSString alloc] initWithData:appleIDCredential.identityToken encoding:NSUTF8StringEncoding];
-    NSDictionary *dic = @{
-      @"user": appleIDCredential.user ? appleIDCredential.user : @"",
-      @"state": appleIDCredential.state ? appleIDCredential.state : @"",
-      @"fullName": fullName ? fullName : @{},
-      @"email": appleIDCredential.email ? appleIDCredential.email : @"",
-      @"identityToken": identityToken
+    fullName = @{
+      @"namePrefix" : appleIDCredential.fullName.namePrefix
+          ? appleIDCredential.fullName.namePrefix
+          : @"",
+      @"givenName" : appleIDCredential.fullName.givenName
+          ? appleIDCredential.fullName.givenName
+          : @"",
+      @"givenName" : appleIDCredential.fullName.middleName
+          ? appleIDCredential.fullName.middleName
+          : @"",
+      @"familyName" : appleIDCredential.fullName.familyName
+          ? appleIDCredential.fullName.familyName
+          : @"",
+      @"nameSuffix" : appleIDCredential.fullName.nameSuffix
+          ? appleIDCredential.fullName.nameSuffix
+          : @"",
+      @"nickname" : appleIDCredential.fullName.nickname
+          ? appleIDCredential.fullName.nickname
+          : @"",
+      @"phoneticRepresentation" : fullNamePhonetic ? fullNamePhonetic : @{}
     };
+  }
+  NSString *identityToken =
+      [[NSString alloc] initWithData:appleIDCredential.identityToken
+                            encoding:NSUTF8StringEncoding];
+  NSDictionary *dic = @{
+    @"user" : appleIDCredential.user ? appleIDCredential.user : @"",
+    @"state" : appleIDCredential.state ? appleIDCredential.state : @"",
+    @"fullName" : fullName ? fullName : @{},
+    @"email" : appleIDCredential.email ? appleIDCredential.email : @"",
+    @"identityToken" : identityToken
+  };
 
-   CDVPluginResult *result =
-    [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary: dic];
-   [self.commandDelegate sendPluginResult:result
-                               callbackId:_callbackId];
+  CDVPluginResult *result =
+      [CDVPluginResult resultWithStatus:CDVCommandStatus_OK
+                    messageAsDictionary:dic];
+  [self.commandDelegate sendPluginResult:result callbackId:_callbackId];
 }
 
+- (void)authorizationController:(ASAuthorizationController *)controller
+           didCompleteWithError:(NSError *)error {
+  NSLog(@"Failed");
+  NSLog(@" error => %@ ", [error localizedDescription]);
 
-- (void) authorizationController:(ASAuthorizationController *)controller didCompleteWithError:(NSError *)error
-{
-    NSLog(@"Failed");
-    NSLog(@" error => %@ ", [error localizedDescription] );
-
-    CDVPluginResult* result = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString: [error localizedDescription]];
-            [self.commandDelegate sendPluginResult:result callbackId:command.callbackId];
+  CDVPluginResult *result =
+      [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR
+                        messageAsString:[error localizedDescription]];
+  [self.commandDelegate sendPluginResult:result callbackId:command.callbackId];
 }
 
 @end
