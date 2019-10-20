@@ -110,12 +110,16 @@
   NSString *identityToken =
       [[NSString alloc] initWithData:appleIDCredential.identityToken
                             encoding:NSUTF8StringEncoding];
+  NSString *authorizationCode =
+      [[NSString alloc] initWithData:appleIDCredential.authorizationCode
+                            encoding:NSUTF8StringEncoding];
   NSDictionary *dic = @{
     @"user" : appleIDCredential.user ? appleIDCredential.user : @"",
     @"state" : appleIDCredential.state ? appleIDCredential.state : @"",
     @"fullName" : fullName ? fullName : @{},
     @"email" : appleIDCredential.email ? appleIDCredential.email : @"",
-    @"identityToken" : identityToken
+    @"identityToken" : identityToken,
+    @"authorizationCode" : authorizationCode
   };
 
   CDVPluginResult *result =
