@@ -1,6 +1,6 @@
 {
   "name": "cordova-plugin-sign-in-with-apple",
-  "version": "0.0.2",
+  "version": "0.0.4",
   "description": "",
   "main": "www/sign-in-with-apple.js",
   "scripts": {
