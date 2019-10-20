@@ -31,7 +31,7 @@ window.cordova.plugins.SignInWithApple.signin(
 ## Success Callback Data Example
 Based on [ASAuthorizationAppleIDCredential](https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidcredential?language=objc).
 
-- [authorizationCode](https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidcredential/3153032-authorizationcode?language=objc): string `"<A short-lived token used by your app for proof of authorization when interacting with the app’s server counterpart>"`
+- [authorizationCode](https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidcredential/3153032-authorizationcode?language=objc): string `"<short-lived token used by your app for proof of authorization when interacting with the app’s server counterpart>"`
 - [email](https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidcredential/3180383-email?language=objc): string `"address@example.com"`
 - [fullName](https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidcredential/3180384-fullname?language=objc): object, based on [NSPersonNameComponents](https://developer.apple.com/documentation/foundation/nspersonnamecomponents?language=objc)
     - [familyName](https://developer.apple.com/documentation/foundation/nspersonnamecomponents/1413354-familyname?language=objc): string `"Doe"`
@@ -45,9 +45,9 @@ Based on [ASAuthorizationAppleIDCredential](https://developer.apple.com/document
         - namePrefix?: string
         - nameSuffix?: string
         - nickname?: string
-- [identityToken](https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidcredential/3153035-identitytoken?language=objc): string `"<A JSON Web Token (JWT) that securely communicates information about the user to your app>"`
-- [state](https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidcredential/3153036-state?language=objc): string `"<An arbitrary string that your app provided to the request that generated the credential>"`
-- [user](https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidcredential/3153037-user?language=objc): string `"<An identifier associated with the authenticated user>"`
+- [identityToken](https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidcredential/3153035-identitytoken?language=objc): string `"<JSON Web Token (JWT) that securely communicates information about the user to your app>"`
+- [state](https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidcredential/3153036-state?language=objc): string `"<arbitrary string that your app provided to the request that generated the credential>"`
+- [user](https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidcredential/3153037-user?language=objc): string `"<identifier associated with the authenticated user>"`
 
 ## Failure Callback Data Example
 - error: string `"ASAUTHORIZATION_ERROR"`
