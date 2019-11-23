@@ -11,7 +11,7 @@
   <issue>https://github.com/twogate/cordova-plugin-sign-in-with-apple/issues</issue>
 
   <engines>
-    <engine name="cordova" version=">=9.0.0"/>
+    <engine name="cordova" version=">=8.0.0"/>
     <engine name="cordova-ios" version=">=4.5.0"/>
     <!--<engine name="apple-ios" version=">=13.0" />-->
   </engines>
