@@ -1,5 +1,7 @@
 # cordova-plugin-sign-in-with-apple
 
+This plugin only supports iOS >= 13.
+
 ## Installation
 ### Plugin installation
 
@@ -16,7 +18,7 @@ cordova plugin add https://github.com/twogate/cordova-plugin-sign-in-with-apple.
 # Usage
 ```javascript
 window.cordova.plugins.SignInWithApple.signin(
-  null,
+  { requestedScopes: [0, 1] },
   function(succ){
     console.log(succ)
     alert(JSON.stringify(succ))
@@ -27,6 +29,12 @@ window.cordova.plugins.SignInWithApple.signin(
   }
 )
 ```
+
+## Options Example
+
+- `requestedScopes` is an array of requested scopes.
+  - `0`: `FullName`
+  - `1`: `Email`
 
 ## Success Callback Data Example
 Based on [ASAuthorizationAppleIDCredential](https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidcredential?language=objc).

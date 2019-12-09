@@ -6,6 +6,7 @@
 
 @interface SignInWithApple : CDVPlugin
 - (void)pluginInitialize;
+- (NSArray<ASAuthorizationScope> *)convertScopes:(NSArray<NSNumber *> *)scopes;
 - (void)signin:(CDVInvokedUrlCommand *)command;
 @end
 
