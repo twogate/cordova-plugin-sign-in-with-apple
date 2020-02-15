@@ -91,7 +91,7 @@
                 appleIDCredential.fullName.phoneticRepresentation.givenName
             ? appleIDCredential.fullName.phoneticRepresentation.givenName
             : @"",
-        @"givenName" :
+        @"middleName" :
                 appleIDCredential.fullName.phoneticRepresentation.middleName
             ? appleIDCredential.fullName.phoneticRepresentation.middleName
             : @"",
@@ -115,7 +115,7 @@
       @"givenName" : appleIDCredential.fullName.givenName
           ? appleIDCredential.fullName.givenName
           : @"",
-      @"givenName" : appleIDCredential.fullName.middleName
+      @"middleName" : appleIDCredential.fullName.middleName
           ? appleIDCredential.fullName.middleName
           : @"",
       @"familyName" : appleIDCredential.fullName.familyName
