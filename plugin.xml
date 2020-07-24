@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
-  xmlns:android="http://schemas.android.com/apk/res/android" id="cordova-plugin-sign-in-with-apple" version="0.1.1">
+  xmlns:android="http://schemas.android.com/apk/res/android" id="cordova-plugin-sign-in-with-apple" version="0.1.2">
   <name>cordova-plugin-sign-in-with-apple</name>
 
   <description>Sign in with Apple</description>
