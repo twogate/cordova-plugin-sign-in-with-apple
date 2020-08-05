@@ -1,5 +1,7 @@
 # cordova-plugin-sign-in-with-apple
 
+see also: [Official Documentation](https://www.notion.so/twogate/Documentation-of-cordova-plugin-sign-in-with-apple-7a8022b3452246d3b8ea6cfb136140c1)
+
 This plugin only supports iOS >= 13.
 
 ## Installation
