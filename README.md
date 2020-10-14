@@ -18,6 +18,8 @@ cordova plugin add https://github.com/twogate/cordova-plugin-sign-in-with-apple.
 ```
 
 # Usage
+In XCode is **needed** enable **Sign in with Apple** capability (project file -> Capabilities Tab -> Turn on "SignIn With Apple")
+
 ```javascript
 window.cordova.plugins.SignInWithApple.signin(
   { requestedScopes: [0, 1] },
