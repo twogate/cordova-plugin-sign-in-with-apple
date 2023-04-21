@@ -42,6 +42,6 @@
         <string>Default</string>
       </array>
     </config-file>
-<!--<hook type="after_prepare" src="scripts/after_prepare.js" />-->
+    <hook type="after_prepare" src="scripts/after_prepare.js" />
   </platform>
 </plugin>

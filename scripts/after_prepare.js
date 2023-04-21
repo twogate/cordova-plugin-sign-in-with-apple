@@ -1,17 +1,33 @@
-#!/usr/bin/env node
+/**
+Hook is executed at the end of the 'prepare' stage. Usually, when you call 'cordova build'.
 
-'use strict';
+It will inject required preferences in the platform-specific projects, based on <universal-links>
+data you have specified in the projects config.xml file.
+*/
 
-var fs = require('fs');
-var path = require('path');
-var utilities = require("./lib/utilities");
+var iosProjectEntitlements = require('./lib/ios/projectEntitlements.js');
+var IOS = 'ios';
 
-module.exports = function (context) {
-  //get platform from the context supplied by cordova
-  var platforms = context.opts.platforms;
-  // Copy key files to their platform specific folders
-  if (platforms.indexOf('ios') !== -1 && utilities.directoryExists(IOS_DIR)) {
-    console.log('Preparing Sign in with Apple on iOS');
-    utilities.copyKey(PLATFORM.IOS);
-  }
+module.exports = function(ctx) {
+  run(ctx);
 };
+
+/**
+ * Execute hook.
+ *
+ * @param {Object} cordovaContext - cordova context object
+ */
+function run(cordovaContext) {
+  var platformsList = cordovaContext.opts.platforms;
+
+  platformsList.forEach(function(platform) {
+    switch (platform) {
+      case IOS:
+        {
+          // generate entitlements file
+          iosProjectEntitlements.generateAssociatedDomainsEntitlements(cordovaContext);
+          break;
+        }
+    }
+  });
+}
