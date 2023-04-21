@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/twogate/cordova-plugin-sign-in-with-apple/issues"
   },
-  "homepage": "https://github.com/twogate/cordova-plugin-sign-in-with-apple#readme"
+  "homepage": "https://github.com/twogate/cordova-plugin-sign-in-with-apple#readme",
+  "dependencies": {
+    "plist": "^3.0.6",
+    "xml2js": "^0.5.0"
+  }
 }
